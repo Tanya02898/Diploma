@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenshop - Вхід</title>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/media.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100..900&family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <div class="form1">
+        <form class="form" id="loginForm">
+            <h1 class="form1_title2">Вхід</h1>
+            <p class="form1_paragraph">Введіть дані для входу</p>
+
+            <p id="usernameError" class="error"></p>
+            <input class="form1_inputs" id="username" type="text" name="username" placeholder="Ім'я" required />
+
+            <p id="passwordError" class="error"></p>
+            <input class="form1_inputs" id="password" type="password" name="password" placeholder="Пароль" required />
+
+            <button class="form1_button" type="submit">Увійти</button>
+            <p class="form1_paragraph2">Або</p>
+            <a class="form1_Link" href="https://evergreen.infinityfreeapp.com/Registration.html">Реєстрація</a>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const password = document.getElementById("password").value.trim();
+
+            const usernameError = document.getElementById("usernameError");
+            const passwordError = document.getElementById("passwordError");
+
+            usernameError.textContent = "";
+            passwordError.textContent = "";
+            document.getElementById("username").style.borderColor = "";
+            document.getElementById("password").style.borderColor = "";
+
+            let hasError = false;
+
+            if (!username) {
+                usernameError.textContent = "Введіть ім'я користувача";
+                document.getElementById("username").style.borderColor = "red";
+                hasError = true;
+            }
+
+            if (!password) {
+                passwordError.textContent = "Введіть пароль";
+                document.getElementById("password").style.borderColor = "red";
+                hasError = true;
+            }
+
+            if (hasError) return;
+
+            const xhr = new XMLHttpRequest();
+            xhr.open("POST", "login.php", true);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    const response = xhr.responseText.trim();
+
+                    if (response === "success") {
+                        window.location.href = "https://evergreen.infinityfreeapp.com/index.html";
+                    } else if (response === "login_not_found") {
+                        usernameError.textContent = "Користувача з таким ім’ям не знайдено";
+                        document.getElementById("username").style.borderColor = "red";
+                    } else if (response === "password_incorrect") {
+                        passwordError.textContent = "Неправильний пароль";
+                        document.getElementById("password").style.borderColor = "red";
+                    } else {
+                        alert("Невідома помилка. Спробуйте пізніше.");
+                    }
+                }
+            };
+
+            xhr.send("username=" + encodeURIComponent(username) + "&password=" + encodeURIComponent(password));
+        });
+    </script>
+</body>
+</html>
