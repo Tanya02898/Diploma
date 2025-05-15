@@ -76,7 +76,6 @@
             document.addEventListener("DOMContentLoaded", function () {
                 const loginLink = document.getElementById("loginLink");
 
-                // Проверка входа через PHP
                 fetch('check_login.php')
                     .then(response => response.text())
                     .then(isLoggedIn => {
@@ -84,7 +83,6 @@
                             loginLink.style.display = 'none';
                         }
 
-                        // Также проверка sessionStorage после регистрации
                         if (loginLink && sessionStorage.getItem('user_registered') === 'true') {
                             loginLink.style.display = 'none';
                             sessionStorage.removeItem('user_registered');
