@@ -11,4 +11,4 @@
 * PHP
 ## Опублікований продукт
 Посилання на інтернет-магазин
-[link]([http://itch.io](https://evergreen.infinityfreeapp.com/index.html)
+[link](https://evergreen.infinityfreeapp.com/index.html)
