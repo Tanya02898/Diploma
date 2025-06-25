@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/media.css">
+
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="https://evergreen.infinityfreeapp.com/index.html">
+                <img src="images/Logo.svg" alt="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://evergreen.infinityfreeapp.com/index.html">Головна</a>
+                    </li>
+                    <li>
+                        <a href="#about">Про нас</a>
+                    </li>
+                    <li class="drop_down">
+                        <a href="#products_sort">Категорії</a>
+                        <ul class="second_menu">
+                            <li><a href="#product-list" data-sale-filter="1-25">Знижки до -25 %</a></li>
+                            <li><a href="#product-list" data-sale-filter="26-50">Знижки до -50 %</a></li>
+                            <li><a href="#product-list" data-sale-filter="51-75">Знижки до -75 %</a></li>
+                            <li class="drop_down_2"><a class="arrow_manu" href="#">Інші категорії</a>
+                                <ul class="third_menu">
+                                    <li><a href="#product-list" data-category="Всі">Всі товари</a></li>
+                                    <li><a href="#product-list" data-category="Кімнатні">Кімнатні</a></li>
+                                    <li><a href="#product-list" data-category="Добрива">Добрива</a></li>
+                                    <li><a href="#product-list" data-category="Насіння">Насіння</a></li>
+                                    <li><a href="#product-list" data-category="Саженці">Саженці</a></li>
+                                    <li><a href="#product-list" data-category="Горщики">Горщики</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#blog_posts">Блог</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="find" id="findBlock">
+                <ul>
+                    <li><a class="heart_find" href="https://evergreen.infinityfreeapp.com/like.html"></a></li>
+                    <li><a class="cart_find" href="https://evergreen.infinityfreeapp.com/cart.html"></a></li>
+                    <li>
+                        <div class="search-wrapper">
+                            <img src="images/Frame.svg" alt="icon" class="search-icon">
+                            <form id="searchForm">
+                                <input type="text" id="searchInput" class="search-input" placeholder="Назва товару...">
+                            </form>
+                        </div>
+                    </li>
+                </ul>
+                <a href="https://evergreen.infinityfreeapp.com/Registration.html" class="login" id="loginLink"
+                    target="_blank">Вхід</a>
+            </div>
+        </div>
+        <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const loginLink = document.getElementById("loginLink");
+
+            fetch('check_login.php')
+                .then(response => response.text())
+                .then(isLoggedIn => {
+                    if (loginLink && isLoggedIn === 'true') {
+                        loginLink.style.display = 'none';
+                    }
+                })
+                .catch(error => {
+                    console.error("Ошибка при проверке входа:", error);
+                });
+        });
+        </script>
+
+    </header>
+    <main>
+        <section class="banner">
+            <div class="container">
+                <article>
+                    <h3>Ласкаво просимо до EverBloom</h3>
+                    <h1>Зробимо планету <span>краще</span></h1>
+                    <p class="p_main">Ми – інтернет-магазин рослин, який пропонує широкий вибір дешевих і модних рослин
+                        та садового інвентраю. Використовуйте наші рослини, щоб створити унікальні міські джунглі.
+                        Замовляйте улюблені рослини!</p>
+                    <a href="#products_sort" class="ShopNow">Купити зараз</a>
+                </article>
+                <img src="images/Group3.png" alt="MainImage">
+            </div>
+        </section>
+
+        <section class="products">
+            <div class="container">
+                <div class="left_side">
+                    <h4>Категорії</h4>
+                    <ul>
+                        <li><a href="#product-list" data-category="Всі">Всі товари</a></li>
+                        <li><a href="#product-list" data-category="Кімнатні">Кімнатні рослини</a></li>
+                        <li><a href="#product-list" data-category="Добрива">Добрива</a></li>
+                        <li><a href="#product-list" data-category="Насіння">Насіння для розсади</a></li>
+                        <li><a href="#product-list" data-category="Саженці">Саженці</a></li>
+                        <li><a href="#product-list" data-category="Горщики">Горщики</a></li>
+                    </ul>
+                    <img src="images/SuperSale.svg" alt="SuperSale">
+                </div>
+                <div class="right_side">
+                    <div class="products_sort" id="products_sort">
+                        <ul>
+                            <li><a href="#product-list" data-filter="all">Всі товари</a></li>
+                            <li><a href="#product-list" data-filter="new">Новинки</a></li>
+                            <li><a href="#product-list" data-filter="sale">Акції</a></li>
+                        </ul>
+                        <ul class="Sort_by">
+                            <li><a href="#products_sort" class="Sort_by_a"> Сортувати</a>
+                                <ul class="Sort_by_dropdown">
+                                    <li><a href="#product-list"> За замовчуванням</a></li>
+                                    <li><a href="#product-list"> Спочатку дешевші</a></li>
+                                    <li><a href="#product-list"> Спочатку дорожчі</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="main_product_items">
+                        <div class="main_product_items" id="product-list">
+                            <!-- каталог товарів тут  -->
+                        </div>
+                    </div>
+                    <div class="numbers_list">
+                        <ul>
+                            <!-- Пагинация  -->
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  let currentPage = 1;
+  let currentSort = "default";
+  let currentCategory = "";
+  let currentFilter = "all";       // фільтр: all / new / sale / search
+  let currentSaleFilter = "";      // фільтр по знижці: "1-25", "26-50" і т.д.
+  let currentSearchQuery = "";     // зберігаємо останній пошуковий запит
+
+  const productContainer = document.getElementById("product-list");
+  const paginationContainer = document.querySelector(".numbers_list ul");
+  const sortLinks = document.querySelectorAll(".Sort_by_dropdown a");
+  const categoryLinks = document.querySelectorAll('[data-category]');
+  const filterLinks = document.querySelectorAll("ul li a[data-filter]");
+  const saleFilterLinks = document.querySelectorAll(".second_menu a[data-sale-filter]");
+
+  const searchForm = document.getElementById('searchForm');
+  const searchInput = document.getElementById('searchInput');
+
+  // Обробка пошуку
+  searchForm.addEventListener('submit', function (e) {
+    e.preventDefault();
+    const searchQuery = searchInput.value.trim();
+
+    if (searchQuery !== '') {
+      currentCategory = "";
+      currentSaleFilter = "";
+      currentFilter = "search";
+      currentSearchQuery = searchQuery;
+      currentPage = 1;
+      loadProducts(currentPage, currentSort, currentCategory, currentFilter, currentSaleFilter, currentSearchQuery);
+    }
+  });
+
+  // Обробка фільтра "Всі товари / Новинки / Акції"
+  filterLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      currentFilter = link.dataset.filter || "all";
+      currentSaleFilter = "";
+      currentSearchQuery = "";
+      currentPage = 1;
+      loadProducts(currentPage, currentSort, currentCategory, currentFilter, currentSaleFilter);
+    });
+  });
+
+  // Обробка сортування
+  sortLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const text = link.textContent.trim();
+
+      switch (text) {
+        case "Спочатку дешевші":
+          currentSort = "asc";
+          break;
+        case "Спочатку дорожчі":
+          currentSort = "desc";
+          break;
+        default:
+          currentSort = "default";
+      }
+
+      currentPage = 1;
+      loadProducts(currentPage, currentSort, currentCategory, currentFilter, currentSaleFilter, currentSearchQuery);
+    });
+  });
+
+  // Обробка вибору категорії
+  categoryLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const category = link.dataset.category.trim();
+      currentCategory = category === "Всі" ? "" : category;
+      currentSearchQuery = "";
+      currentPage = 1;
+      loadProducts(currentPage, currentSort, currentCategory, currentFilter, currentSaleFilter);
+    });
+  });
+
+  // Обробка фільтрації по знижці
+  saleFilterLinks.forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const range = link.dataset.saleFilter;
+      currentSaleFilter = range || "";
+      currentFilter = "all";
+      currentSearchQuery = "";
+      currentPage = 1;
+      loadProducts(currentPage, currentSort, currentCategory, currentFilter, currentSaleFilter);
+    });
+  });
+
+  // Завантаження товарів
+  function loadProducts(page = 1, sort = "default", category = "", filter = "all", saleFilter = "", search = "") {
+    const url = new URL("get_products.php", window.location.href);
+    url.searchParams.set("page", page);
+    url.searchParams.set("sort", sort);
+    if (category) url.searchParams.set("category", category);
+    if (filter && filter !== "all") url.searchParams.set("filter", filter);
+    if (saleFilter) url.searchParams.set("sale_filter", saleFilter);
+    if (filter === "search" && search) url.searchParams.set("search", search);
+
+    fetch(url)
+      .then(response => {
+        if (!response.ok) throw new Error("Помилка сервера");
+        return response.json();
+      })
+      .then(data => {
+        renderProducts(data.products);
+
+        // Показувати пагінацію лише якщо це головна сторінка
+        if (filter === "all" && category === "" && saleFilter === "" && search === "") {
+          renderPagination(data.total_pages);
+          document.querySelector(".numbers_list").style.display = "block";
+        } else {
+          paginationContainer.innerHTML = "";
+          document.querySelector(".numbers_list").style.display = "none";
+        }
+      })
+      .catch(error => {
+        console.error("Помилка при завантаженні:", error);
+        productContainer.innerHTML = `<div class="arror_text"><p>Не вдалося завантажити товари</p></div>`;
+      });
+  }
+
+  // Відображення товарів
+  function renderProducts(products) {
+    productContainer.innerHTML = "";
+
+    if (!products || products.length === 0) {
+      productContainer.innerHTML = `<div class="arror_text"><p>Немає товарів для відображення.</p></div>`;
+      return;
+    }
+
+    products.forEach(product => {
+      const article = document.createElement("article");
+      article.className = "item_article";
+
+      const productLink = `https://evergreen.infinityfreeapp.com/item.html?id=${product.id}`;
+      const imagePath = product.image.startsWith("http")
+        ? product.image
+        : `https://evergreen.infinityfreeapp.com/${product.image}`;
+
+      const isNew = product.is_new == 1 ? `<div class="new">NEW!</div>` : "";
+      const sale = product.sale_percent > 0 ? `<div class="sale">${product.sale_percent}% OFF</div>` : "";
+
+      let oldPriceHtml = "";
+      if (product.old_price && parseFloat(product.old_price) > parseFloat(product.price)) {
+        oldPriceHtml = `<div class="old_prise">₴ ${parseFloat(product.old_price).toFixed(2)}</div>`;
+      }
+
+      article.innerHTML = `
+        <a href="${productLink}" class="product_image_wrapper" style="position: relative;">
+          ${isNew}
+          ${sale}
+          <img src="${imagePath}" alt="product image">
+          ${oldPriceHtml}
+        </a>
+        <a href="${productLink}" class="Link-item">${product.name}</a>
+        <p>₴ ${parseFloat(product.price).toFixed(2)}</p>
+        <ul class="icons">
+          <li><button class="cash" title="Купити" data-product-id="${product.id}"></button></li>
+           <li><button class="heart" data-product-id="${product.id}"></button></li>
+          <li><a href="${productLink}" class="serch" title="Детальніше"></a></li>
+        </ul>
+      `;
+
+      productContainer.appendChild(article);
+    });
+  }
+
+  // Відображення пагінації
+  function renderPagination(totalPages) {
+    paginationContainer.innerHTML = "";
+
+    for (let i = 1; i <= totalPages; i++) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "#";
+      a.textContent = i;
+
+      if (i === currentPage) {
+        a.classList.add("active");
+      }
+
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        if (i !== currentPage) {
+          currentPage = i;
+          loadProducts(currentPage, currentSort, currentCategory, currentFilter, currentSaleFilter, currentSearchQuery);
+        }
+      });
+
+      li.appendChild(a);
+      paginationContainer.appendChild(li);
+    }
+  }
+
+  // Перше завантаження товарів
+  loadProducts(currentPage, currentSort, currentCategory, currentFilter, currentSaleFilter);
+});
+</script>
+
+<script>
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("heart")) {
+    const btn = e.target;
+    const productId = btn.getAttribute("data-product-id");
+
+    if (!productId) return;
+
+    fetch('like.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'product_id=' + encodeURIComponent(productId)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        btn.classList.add('liked');
+        alert('Товар додано в улюблені!');
+      } else if (data.error === 'already_liked') {
+        alert('Товар вже у ваших улюблених');
+      } else if (data.error === 'unauthorized') {
+        alert('Будь ласка, увійдіть, щоб поставити лайк');
+      } else {
+        alert(data.error || 'Сталася помилка, спробуйте ще раз');
+      }
+    })
+    .catch(() => alert('Помилка при відправці запиту'));
+  }
+});
+</script>
+
+<script>
+document.addEventListener("click", function(e) {
+  if (e.target.classList.contains("cash")) {
+    const btn = e.target;
+    const productId = btn.getAttribute("data-product-id");
+
+    if (!productId) return;
+
+    fetch('add_to_cart.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ product_id: productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        btn.classList.add('added');
+        alert('Товар додано в кошик!');
+      } else if (data.error === 'already_in_cart') {
+        alert('Товар вже у кошику');
+      } else if (data.error === 'unauthorized') {
+        alert('Будь ласка, увійдіть, щоб додати товар у кошик');
+      } else {
+        alert(data.error || 'Сталася помилка, спробуйте ще раз');
+      }
+    })
+    .catch(() => alert('Помилка при запиті до сервера'));
+  }
+});
+</script>
+
+
+        <section class="find_more" id="about">
+            <div class="container">
+                <div class="left">
+                    <img src="images/image14.svg" alt="LeftPlant">
+                    <div class="content">
+                        <p class="content_title"> Літні кактуси <br> & сукуленти </p>
+                        <p class="content_text">Дізнайся багато нового, цікавого та корисного про літні кактуси та
+                            сукуленти </p>
+                        <a class="link_find" href="#">Дізнатись </a>
+                    </div>
+                </div>
+
+                <div class="right">
+                    <img src="images/image15.svg" alt="RightPlant">
+                    <div class="content">
+                        <p class="content_title"> Тенденції стилю <br> & багато іншого</p>
+                        <p class="content_text">Дізнайся багато нового, цікавого та корисного про тенденції стилю в
+                            світі рослин </p>
+                        <a class="link_find" href="#">Дізнатись </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <section class="blog_posts" id="blog_posts">
+            <div class="container">
+                <h4>Наші Blog Posts</h4>
+                <p class="main_p">Ми – інтернет-магазин рослин, який пропонує широкий вибір дешевих і модних рослин та
+                    садового інвентраю. </p>
+                <div class="four_pictures">
+                    <article>
+                        <img src="images/01.svg" alt="01p">
+                        <p class="p1">Червень 12 I Читати 5 хв</p>
+                        <p class="mini_title">Кактуси & сукуленти <br>Поради по догляду</p>
+                        <p class="p2">Кактуси — це сукуленти, за якими легко доглядати за рослинами для будь-якого дому.
+                        </p>
+                        <a href="#"> Читати </a>
+                    </article>
+                    <article>
+                        <img src="images/02.svg" alt="02p">
+                        <p class="p1">Червень 14 I Читати 2 хв</p>
+                        <p class="mini_title">Тoп 10 cукулентів для <br>Твого дому</p>
+                        <p class="p2">Найкраще у підвісних кошиках. Віддає перевагу середньому та сильному освітленню.
+                        </p>
+                        <a href="#"> Читати </a>
+                    </article>
+                    <article>
+                        <img src="images/03.svg" alt="03p">
+                        <p class="p1">Червень 17 I Читати 3 хв</p>
+                        <p class="mini_title">Кактуси & сукуленти <br>Поради по догляду</p>
+                        <p class="p2">Кактуси та сукуленти процвітають у контейнерах, і оскільки більшість із них...</p>
+                        <a href="#"> Читати </a>
+                    </article>
+                    <article>
+                        <img src="images/04.svg" alt="04p">
+                        <p class="p1">Червень 17 I Читати 2 хв</p>
+                        <p class="mini_title">Кращі кімнатні <br>Рослини</p>
+                        <p class="p2">Переваги кімнатних рослин просто безмежні. Відомо, що кімнатні рослини володіють
+                            ...</p>
+                        <a href="#"> Читати </a>
+                    </article>
+                </div>
+            </div>
+        </section>
+        <section class="bottom">
+            <div class="container">
+                <div class="pictures_form">
+                    <article class="bottom_articl">
+                        <img src="images/Group26.svg" alt="Group26">
+                        <p class="p_bottom"> Догляд за садом </p>
+                        <p class="p_bottom1"> Зазвичай ми публікуємо пропозиції та виклики в інформаційному бюлетені.
+                        </p>
+                    </article>
+                    <article class="bottom_artic2">
+                        <img src="images/Group27.svg" alt="Group27">
+                        <p class="p_bottom"> Оновлення саду </p>
+                        <p class="p_bottom1"> Ми – ваше місце призначення різноманітних рослин в Інтернеті. </p>
+                    </article>
+                    <article class="bottom_artic3">
+                        <img src="images/Group28.svg" alt="Group28">
+                        <p class="p_bottom"> Полив саду </p>
+                        <p class="p_bottom1"> Ми пропонуємо широкий асортимент кімнатних рослин і аксесуарів! </p>
+                    </article>
+                    <div class="bottom_form">
+                        <p class="pinput_bottom">Хочете приєднатися до розсилки новин?</p>
+                        <form class="email_b_form">
+                            <input type="email" name="email" placeholder="Введіть ваш email" />
+                            <button class="button1" type="button">Вислати</button>
+                        </form>
+                        <p class="p_bottom2">Зазвичай ми публікуємо пропозиції та виклики в інформаційному бюлетені. Ми
+                            – ваше місце призначення кімнатних рослин в Інтернеті. </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <ul class="Contacts_menu">
+                <li><img src="images/Logo(1).svg" alt="Logo1"> </li>
+                <li class="location">Ukraine Poltava <br> vul Sobornosti, 123</li>
+                <li class="mail">contact@everbloom.com</li>
+                <li class="phone">+380 99 517 0914</li>
+            </ul>
+        </div>
+        <section class="bottom_menu1">
+            <div class="container">
+                <ul class="bottom_menu">
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P1">Акаунт</li>
+                            <li><a href="#">Наш акаунт</a></li>
+                            <li><a href="#">Наші магазини</a></li>
+                            <li><a href="#">Зв'яжіться з нами</a></li>
+                            <li><a href="#">Кар'єра</a></li>
+                            <li><a href="#">Спец</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P1">Допомога</li>
+                            <li><a href="#">Центр допомоги</a></li>
+                            <li><a href="#">Як купувати</a></li>
+                            <li><a href="#">Доставка</a></li>
+                            <li><a href="#">Політика продукту</a></li>
+                            <li><a href="#">Повернення</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P1">Категорії</li>
+                            <li><a href="#">Кімнатні рослини</a></li>
+                            <li><a href="#">Добрива</a></li>
+                            <li><a href="#">Насіння для розсади</a></li>
+                            <li><a href="#">Саженці</a></li>
+                            <li><a href="#">Горщики</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P11">Соціальні медіа</li>
+                            <a class="media1" href="#"><img src="images/Group32.svg" alt="gr32"></a>
+                            <a class="media2" href="#"><img src="images/Group31.svg" alt="gr31"></a>
+                            <a class="media3" href="#"><img src="images/Group30.svg" alt="gr30"></a>
+                            <a class="media4" href="#"><img src="images/Group29.svg" alt="gr29"></a>
+                            <a class="media5" href="#"> <img src="images/Group_28.svg" alt="gr28"></a>
+                            <li class="bottom_menu_P12">Ми приймаємо</li>
+                            <li><img src="images/image46.svg" alt="Logo1"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+    <script>
+        // Якщо користувач зареєстрований, ховаємо "Вхід"
+        document.addEventListener("DOMContentLoaded", function () {
+            const isRegistered = localStorage.getItem("userRegistered") === "true";
+            const loginLink = document.querySelector(".login");
+
+            if (isRegistered && loginLink) {
+                loginLink.style.display = "none";
+            }
+        });
+
+        // Зберігаємо реєстрацію, якщо прийшов параметр registered=true
+        if (window.location.search.includes("registered=true")) {
+            localStorage.setItem("userRegistered", "true");
+            // Видаляємо параметр з URL
+            const url = new URL(window.location);
+            url.searchParams.delete("registered");
+            window.history.replaceState({}, document.title, url.pathname);
+        }
+    </script> 
+</body>
+</html>

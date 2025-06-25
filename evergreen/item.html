@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evergreen</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="css/media.css">
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <a href="https://evergreen.infinityfreeapp.com/index.html">
+                <img src="images/Logo.svg" alt="logo">
+            </a>
+            <nav>
+                <ul>
+                    <li>
+                        <a href="https://evergreen.infinityfreeapp.com/index.html">Головна</a>
+                    </li>
+                    <li>
+                        <a href="#about">Про нас</a>
+                    </li>
+                    <li class="drop_down">
+                        <a href="#products_sort">Категорії</a>
+                        <ul class="second_menu">
+                            <li><a href="#">Знижки до -25 %</a></li>
+                            <li><a href="#">Знижки до -50 %</a></li>
+                            <li><a href="#">Знижки до -75 %</a></li>
+                            <li class="drop_down_2"><a class="arrow_manu" href="#">Інші категорії</a>
+                                <ul class="third_menu">
+                                    <li><a href="#">Всі товари</a></li>
+                                    <li><a href="#">Кімнатні</a></li>
+                                    <li><a href="#">Добрива</a></li>
+                                    <li><a href="#">Насіння </a></li>
+                                    <li><a href="#">Саженці</a></li>
+                                    <li><a href="#">Горщики</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#blog_posts">Блог</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="find" id="findBlock">
+                <ul>
+                    <li><a class="heart_find" href="https://evergreen.infinityfreeapp.com/like.html"></a></li>
+                    <li><a class="cart_find" href="https://evergreen.infinityfreeapp.com/cart.html"></a></li>
+                </ul>
+                <a href="https://evergreen.infinityfreeapp.com/Registration.html" class="login" id="loginLink"
+                    target="_blank">Вхід</a>
+            </div>
+        </div>
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const loginLink = document.getElementById("loginLink");
+
+                
+                fetch('check_login.php')
+                    .then(response => response.text())
+                    .then(isLoggedIn => {
+                        if (loginLink && isLoggedIn === 'true') {
+                            loginLink.style.display = 'none';
+                        }
+
+                        // Также проверка sessionStorage после регистрации
+                        if (loginLink && sessionStorage.getItem('user_registered') === 'true') {
+                            loginLink.style.display = 'none';
+                            sessionStorage.removeItem('user_registered');
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Ошибка при проверке входа:", error);
+                    });
+            });
+        </script>
+    </header>
+
+    <main>
+        <section class="item_nemu">
+            <div class="container">
+                <nav class="item_menu">
+                    <ul>
+                        <li><a href="#information_item">Основна інформація</a></li>
+                        <li><a href="#item_character">Опис</a></li>
+                        <li><a href="#character">Характеристики</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+
+<section class="information_item" id="information_item">
+    <div class="container">
+        <div class="item_info">
+            <article class="item_photo">
+                <img class="item_photo1" src="" alt="item_photo">
+            </article>
+            <article>
+                <div class="item_main_inform">
+                    <h1 class="item_name">Назва товару</h1>
+                    <h2 class="item_price">₴ 0.00</h2>
+                    <div class="seller">
+                        <p>Продавець:</p>
+                        <img src="images/Logo.svg" alt="logo">
+                    </div>
+                </div>
+                <div class="buttons">
+                    <button class="button_buy cash" > Купити</button> 
+                    <button class="button_love" >У бажання</button>
+                </div>
+
+                <div class="delivery">
+                    <p>Доставка</p>
+                    <ul class="delivery_post1">
+                        <li class="li_first">Самовивіз з Нової Пошти</li>
+                        <li>Відправимо завтра</li>
+                        <li>Від 80 грн</li>
+                    </ul>
+                    <ul class="delivery_post2">
+                        <li class="li_first2">Самовивіз з УКРПОШТИ</li>
+                        <li>Відправимо завтра</li>
+                        <li>Від 30 грн</li>
+                    </ul>
+                    <ul class="delivery_post3">
+                        <li class="li_first3">Самовивіз з Meest Пошти</li>
+                        <li>Відправимо завтра</li>
+                        <li>Від 60 грн</li>
+                    </ul>
+                </div>
+                <div class="paymet">
+                    <span>Оплата</span>
+                    <p>Оплата під час отримання товару, Картою онлайн, Apple Pay, Google Pay, Mastercard, Visa</p>
+                </div>
+                <div class="guaranty">
+                    <span>Гарантія</span>
+                    <p>24 місяці офіційної гарантії від виробника. Обмін/повернення товару протягом 14 днів.</p>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+        <section class="item_character" id="item_character">
+            <div class="container">
+                <div class="left_info">
+                    <div class="about">
+                        <h2>Опис</h2>
+                        <p>Опис товару буде підставлено динамічно.</p>
+                    </div>
+                    <div class="character" id="character">
+                        <h2>Характеристика</h2>
+                        <!-- Динамічне заповнення -->
+                    </div>
+                </div>
+                <div class="stars">
+                    <h2>Оцінити товар</h2>
+                    <ul>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                        <li></li>
+                    </ul>
+                    <button>Відправити</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <ul class="Contacts_menu">
+                <li><img src="images/Logo(1).svg" alt="Logo1"> </li>
+                <li class="location">Ukraine Poltava <br> vul Sobornosti, 123</li>
+                <li class="mail">contact@everbloom.com</li>
+                <li class="phone">+380 99 517 0914</li>
+            </ul>
+        </div>
+        <section class="bottom_menu1">
+            <div class="container">
+                <ul class="bottom_menu">
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P1">Акаунт</li>
+                            <li><a href="#">Наш акаунт</a></li>
+                            <li><a href="#">Наші магазини</a></li>
+                            <li><a href="#">Зв'яжіться з нами</a></li>
+                            <li><a href="#">Кар'єра</a></li>
+                            <li><a href="#">Спец</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P1">Допомога</li>
+                            <li><a href="#">Центр допомоги</a></li>
+                            <li><a href="#">Як купувати</a></li>
+                            <li><a href="#">Доставка</a></li>
+                            <li><a href="#">Політика продукту</a></li>
+                            <li><a href="#">Повернення</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P1">Категорії</li>
+                            <li><a href="#">Кімнатні рослини</a></li>
+                            <li><a href="#">Добрива</a></li>
+                            <li><a href="#">Насіння для розсади</a></li>
+                            <li><a href="#">Саженці</a></li>
+                            <li><a href="#">Горщики</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        <ul>
+                            <li class="bottom_menu_P11">Соціальні медіа</li>
+                            <div class="main_media">
+                                <a class="media1" href="#"><img src="images/Group32.svg" alt="gr32"></a>
+                                <a class="media2" href="#"><img src="images/Group31.svg" alt="gr31"></a>
+                                <a class="media3" href="#"><img src="images/Group30.svg" alt="gr30"></a>
+                                <a class="media4" href="#"><img src="images/Group29.svg" alt="gr29"></a>
+                                <a class="media5" href="#"> <img src="images/Group_28.svg" alt="gr28"></a>
+                            </div>
+                            <li class="bottom_menu_P12">Ми приймаємо</li>
+                            <li class="bottom_menu_img"> <img src="images/image46.svg" alt="Logo1"></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const params = new URLSearchParams(window.location.search);
+            const productId = params.get('id');
+            if (!productId) return;
+
+            fetch(`product_info.php?id=${productId}`)
+                .then(res => res.json())
+                .then(data => {
+                    if (data.error) return console.error(data.error);
+                    document.querySelector('.item_name').textContent = data.name;
+                    document.querySelector('.item_price').textContent = `₴ ${data.price}`;
+                    document.querySelector('.item_photo1').src = data.image;
+                    document.querySelector('.about p').textContent = data.description;
+                    const buyBtn = document.querySelector('.button_buy');
+                    const likeBtn = document.querySelector('.button_love');
+
+                    if (buyBtn) buyBtn.setAttribute('data-product-id', productId);
+                    if (likeBtn) likeBtn.setAttribute('data-product-id', productId);
+                    const charContainer = document.querySelector('.character');
+                    const characteristics = {
+                    'Тип': data.type || 'Не указано',
+                    'Діаметр': data.diameter || 'Не указано',
+                    'Оптимальна температура': data.temperature || 'Не указано',
+                    'Освітлення': data.light || 'Не указано',
+                    'Полив': data.watering || 'Не указано',
+                    'Країна-Виробник': data.origin || 'Не указано',
+                    'Упаковка': data.package_type || 'Не указано',
+                    'Тип упаковки': data.package_detail || 'Не указано'
+                    };
+
+                    charContainer.innerHTML = '<h2>Характеристика</h2>';
+                    Object.entries(characteristics).forEach(([key, val], i) => {
+                        const div = document.createElement('div');
+                        div.className = i % 2 === 0 ? 'list1' : 'list';
+                        div.innerHTML = `<span>${key}:</span><span>${val}</span>`;
+                        charContainer.appendChild(div);
+                    });
+                })
+                .catch(err => console.error("Помилка при завантаженні товару:", err));
+        });
+    </script>
+<script>
+document.addEventListener("click", function(e) {
+  const target = e.target;
+
+  // ЛАЙК
+  if (target.classList.contains("button_love")) {
+    const productId = target.getAttribute("data-product-id");
+    if (!productId) return;
+
+    fetch('like.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: 'product_id=' + encodeURIComponent(productId)
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        target.classList.add('liked');
+        alert('Товар додано в улюблені!');
+      } else if (data.message === 'Вже додано до улюблених') {
+        alert('Товар вже у ваших улюблених');
+      } else {
+        alert(data.error || 'Сталася помилка, спробуйте ще раз');
+      }
+    })
+    .catch(() => alert('Помилка при відправці запиту'));
+  }
+
+  // ДОБАВИТЬ В КОРЗИНУ
+  if (target.classList.contains("button_buy")) {
+    const productId = target.getAttribute("data-product-id");
+    if (!productId) return;
+
+    fetch('add_to_cart.php', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ product_id: productId })
+    })
+    .then(response => response.json())
+    .then(data => {
+      if (data.success) {
+        target.classList.add('added');
+        alert('Товар додано в кошик!');
+      } else if (data.error === 'already_in_cart') {
+        alert('Товар вже у кошику');
+      } else {
+        alert(data.error || 'Сталася помилка, спробуйте ще раз');
+      }
+    })
+    .catch(() => alert('Помилка при запиті до сервера'));
+  }
+});
+</script>
+
+
+</body>
+</html>
